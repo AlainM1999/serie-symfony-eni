@@ -1,14 +1,42 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=yes, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-<h1>testou</h1>
+{% extends 'base.html.twig' %}
 
-</body>
-</html>
+{% block body %}
+<h1>testou</h1>
+<div>
+    <div>{{ '+1 year'|date('Y') }}</div>
+    {# Creer une variable ! #}
+    {% set name = "Alain" %}
+    <h2>{{ name | upper }}</h2>
+
+    {# creer tablea #}
+    {% set colors = ['orange', 'brown','turquoise','blue'] %}
+
+     <div>nombre de couleurs : {{ colors | length }}</div>
+    <div>{{ colors | join(' / ') }}</div>
+
+    {% for color in colors %}
+        <div> {{ loop.index }}</div>
+        <div style="background-color: {{ color }} ">{{ color }}</div>
+    {% endfor %}
+
+    {# creer un objet #}
+    {% set book = {
+        title: 'PifPaf',
+        year: 2000,
+        author: 'John Doe'}
+    %}
+    <h3>{{ book.author }}</h3>
+    <div>
+        {% for key, val in book %}
+            <div>
+                {{ key }} : {{ val }}
+            </div>
+        {% endfor %}
+    </div>
+
+</div>
+
+
+{% endblock %}
+
+{% block title %} {{ parent()}} | testounet{% endblock %}
