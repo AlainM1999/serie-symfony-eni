@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ serie.name }} | {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    <h2>{{ serie.name }}</h2>
+    <div>{{ serie.overview }}</div>
+    <div>{{ serie.vote }}</div>
+
+    <section class="seasons">
+        <h3>Seasons</h3>
+        {% for season in serie.seasons %}
+            <article>
+                <img src="{{ asset('img/posters/seasons/'~season.poster) }}"
+                     alt="{{ serie.name }} season # {{ season.number }}">
+                <div>
+                    <h4>Season {{ season.number }}</h4>
+                    {% if season.overview %}
+                        <div>{{ season.overview }}</div>
+                    {% endif %}
+                </div>
+            </article>
+        {% endfor %}
+
+    </section>
+
+{% endblock %}
+
